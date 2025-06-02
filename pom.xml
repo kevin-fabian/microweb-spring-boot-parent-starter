@@ -109,7 +109,7 @@
                         <releaseMergeFFOnly>true</releaseMergeFFOnly>
                         <releaseMergeNoFF>false</releaseMergeNoFF>
                         <skipTestProject>true</skipTestProject>
-                        <skipReleaseMergeProdBranch>true</skipReleaseMergeProdBranch>
+                        <skipReleaseMergeProdBranch>false</skipReleaseMergeProdBranch>
                         <keepBranch>false</keepBranch>
                         <pushRemote>true</pushRemote>
                         <gitFlowConfig>
