@@ -110,7 +110,7 @@
                         <releaseMergeNoFF>false</releaseMergeNoFF>
                         <skipTestProject>true</skipTestProject>
                         <skipReleaseMergeProdBranch>true</skipReleaseMergeProdBranch>
-                        <keepBranch>true</keepBranch>
+                        <keepBranch>false</keepBranch>
                         <pushRemote>true</pushRemote>
                         <gitFlowConfig>
                             <productionBranch>main</productionBranch>
