@@ -111,6 +111,7 @@
                         <skipTestProject>true</skipTestProject>
                         <skipReleaseMergeProdBranch>true</skipReleaseMergeProdBranch>
                         <keepBranch>true</keepBranch>
+                        <pushRemote>true</pushRemote>
                         <gitFlowConfig>
                             <productionBranch>main</productionBranch>
                             <developmentBranch>develop</developmentBranch>
