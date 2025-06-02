@@ -23,16 +23,16 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git@github.com:fabian-kev/${artifactId}</connection>
+        <connection>scm:git:git@github.com:fabian-kev/${project.artifactId}</connection>
         <developerConnection/>
         <tag/>
-        <url>scm:git:git@github.com:fabian-kev/${artifactId}</url>
+        <url>scm:git:git@github.com:fabian-kev/${project.artifactId}</url>
     </scm>
     <distributionManagement>
         <repository>
             <id>github</id>
-            <name>${artifactId}</name>
-            <url>https://maven.pkg.github.com/fabian-kev/${artifactId}</url>
+            <name>${project.artifactId}</name>
+            <url>https://maven.pkg.github.com/fabian-kev/${project.artifactId}</url>
         </repository>
     </distributionManagement>
     <properties>
