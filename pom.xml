@@ -13,7 +13,6 @@
     <version>0.0.7-SNAPSHOT</version>
     <name>microweb-spring-boot-parent-starter</name>
     <description>microweb-spring-boot-parent-starter</description>
-    <packaging>pom</packaging>
     <url/>
     <licenses>
         <license/>
