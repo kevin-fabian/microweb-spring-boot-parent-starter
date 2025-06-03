@@ -62,21 +62,15 @@
     </dependencies>
 
 
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>application.yaml</include>
-                    <include>META-INF/**</include>
-                </includes>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+<!--    <build>-->
+<!--        <resources>-->
+<!--            <resource>-->
+<!--                <directory>src/main/resources</directory>-->
+<!--                <includes>-->
+<!--                    <include>application.yaml</include>-->
+<!--                    <include>META-INF/**</include>-->
+<!--                </includes>-->
+<!--            </resource>-->
+<!--        </resources>-->
+<!--    </build>-->
 </project>
