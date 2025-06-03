@@ -1,4 +1,4 @@
-package com.github.fabiankevin.microwebspringbootstarter.config;
+package com.github.fabiankevin.microwebspringbootstarter;
 
 import com.github.fabiankevin.microwebspringbootstarter.web.GlobalExceptionHandler;
 import org.springframework.context.annotation.Bean;

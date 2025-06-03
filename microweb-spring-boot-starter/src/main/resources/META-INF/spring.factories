@@ -1,3 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.github.fabiankevin.microwebspringbootstarter.config.MicrowebAutoConfiguration
+com.github.fabiankevin.microwebspringbootstarter.MicrowebAutoConfiguration
 
