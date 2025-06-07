@@ -1,5 +1,8 @@
 package com.github.fabiankevin.microwebspringbootstarter.exceptions;
 
+import lombok.Getter;
+
+@Getter
 public class ApiException extends RuntimeException {
     private int httpStatusCode;
 
@@ -21,7 +24,4 @@ public class ApiException extends RuntimeException {
         this.httpStatusCode = httpStatusCode;
     }
 
-    public int getHttpStatusCode() {
-        return httpStatusCode;
-    }
 }
