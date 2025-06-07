@@ -10,9 +10,9 @@
     </parent>
     <groupId>com.github.fabiankevin</groupId>
     <artifactId>microweb-spring-boot-parent-starter</artifactId>
-    <version>0.0.19-SNAPSHOT</version>
+    <version>0.0.23-SNAPSHOT</version>
     <name>microweb-spring-boot-parent-starter</name>
-    <description>microweb-spring-boot-parent-starter1</description>
+    <description>microweb-spring-boot-parent-starter</description>
     <packaging>pom</packaging>
     <modules>
         <module>microweb-spring-boot-starter</module>
@@ -53,7 +53,7 @@
             <dependency>
                 <groupId>com.github.fabiankevin</groupId>
                 <artifactId>microweb-spring-boot-starter</artifactId>
-                <version>0.0.18-SNAPSHOT</version>
+                <version>0.0.23-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
