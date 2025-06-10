@@ -39,6 +39,12 @@
             <url>https://maven.pkg.github.com/kevin-fabian/microweb-spring-boot-parent-starter</url>
         </repository>
     </distributionManagement>
+    <repositories>
+        <repository>
+            <id>github-public</id>
+            <url>https://maven.pkg.github.com/fabiankevin/microweb-spring-boot-parent-starter</url>
+        </repository>
+    </repositories>
     <properties>
         <java.version>21</java.version>
         <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
