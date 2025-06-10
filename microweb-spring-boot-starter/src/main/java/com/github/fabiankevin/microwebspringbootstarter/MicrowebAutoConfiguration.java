@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 
 @AutoConfiguration
-@PropertySource("classpath:application-microweb.yaml")
+@PropertySource("classpath:application-simple-default.properties")
 public class MicrowebAutoConfiguration {
 
     @Bean
