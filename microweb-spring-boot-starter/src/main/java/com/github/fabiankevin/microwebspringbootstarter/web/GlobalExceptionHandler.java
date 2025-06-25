@@ -4,6 +4,7 @@ package com.github.fabiankevin.microwebspringbootstarter.web;
 import com.github.fabiankevin.microwebspringbootstarter.exceptions.ApiException;
 import com.github.fabiankevin.microwebspringbootstarter.web.dto.ApiErrorResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.MessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.util.List;
@@ -75,11 +77,21 @@ public class GlobalExceptionHandler {
         log.debug("ServletRequestBindingException: {}", ex.getMessage(), ex);
         return new ApiErrorResponse("Request Binding Error", ex.getMessage());
     }
+
+    @ExceptionHandler(HandlerMethodValidationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiErrorResponse handlerMethodValidationException(HandlerMethodValidationException ex) {
+        log.debug("HandlerMethodValidationException: {}", ex.getMessage(), ex);
+        return new ApiErrorResponse("Handler method validation error",
+                ex.getValueResults().getFirst().getResolvableErrors().stream()
+                        .map(MessageSourceResolvable::getDefaultMessage)
+                        .toList());
+    }
     
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiErrorResponse handleGenericException(Exception ex) {
-        log.debug("ServletRequestBindingException: {}", ex.getMessage(), ex);
+        log.debug("handleGenericException: {}", ex.getMessage(), ex);
         return new ApiErrorResponse("Internal Server Error", "something went wrong");
     }
 }
