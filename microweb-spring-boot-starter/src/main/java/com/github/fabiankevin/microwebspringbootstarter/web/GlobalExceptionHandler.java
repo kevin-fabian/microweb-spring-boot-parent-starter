@@ -62,6 +62,7 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiErrorResponse handle(HttpRequestMethodNotSupportedException ex) {
         log.debug("HttpRequestMethodNotSupportedException: {}", ex.getMessage(), ex);
         return new ApiErrorResponse("Method Not Supported",
@@ -69,6 +70,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ServletRequestBindingException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiErrorResponse handle(ServletRequestBindingException ex) {
         log.debug("ServletRequestBindingException: {}", ex.getMessage(), ex);
         return new ApiErrorResponse("Request Binding Error", ex.getMessage());
