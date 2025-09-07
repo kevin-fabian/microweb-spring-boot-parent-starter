@@ -1,9 +1,9 @@
-package com.github.fabiankevin.microwebspringbootstarter.web;
+package com.github.fabiankevin.quickstart.web;
 
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import com.github.fabiankevin.microwebspringbootstarter.exceptions.ApiException;
-import com.github.fabiankevin.microwebspringbootstarter.web.dto.ApiErrorResponse;
+import com.github.fabiankevin.quickstart.exceptions.ApiException;
+import com.github.fabiankevin.quickstart.web.dto.ApiErrorResponse;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSourceResolvable;

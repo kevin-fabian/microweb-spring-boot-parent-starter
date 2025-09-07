@@ -1,4 +1,4 @@
-package com.github.fabiankevin.microwebspringbootstarter.exceptions;
+package com.github.fabiankevin.quickstart.exceptions;
 
 import lombok.Getter;
 

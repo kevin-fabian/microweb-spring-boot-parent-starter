@@ -9,13 +9,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.github.fabiankevin</groupId>
-    <artifactId>microweb-spring-boot-parent-starter</artifactId>
+    <artifactId>quickstart-spring-boot-parent-starter</artifactId>
     <version>0.0.31-SNAPSHOT</version>
-    <name>microweb-spring-boot-parent-starter</name>
-    <description></description>
+    <name>quickstart-spring-boot-parent-starter</name>
+    <description>Provides sensible Spring Boot defaults to speed up development and let you focus on your business logic.</description>
     <packaging>pom</packaging>
     <modules>
-        <module>microweb-spring-boot-starter</module>
+        <module>quickstart-spring-boot-starter-web</module>
     </modules>
     <url/>
     <licenses>
@@ -27,16 +27,16 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git@github.com:kevin-fabian/microweb-spring-boot-parent-starter</connection>
+        <connection>scm:git:git@github.com:kevin-fabian/quickstart-spring-boot-parent-starter</connection>
         <developerConnection/>
         <tag/>
-        <url>scm:git:git@github.com:kevin-fabian/microweb-spring-boot-parent-starter</url>
+        <url>scm:git:git@github.com:kevin-fabian/quickstart-spring-boot-parent-starter</url>
     </scm>
     <distributionManagement>
         <repository>
             <id>github</id>
             <name>${project.artifactId}</name>
-            <url>https://maven.pkg.github.com/kevin-fabian/microweb-spring-boot-parent-starter</url>
+            <url>https://maven.pkg.github.com/kevin-fabian/quickstart-spring-boot-parent-starter</url>
         </repository>
     </distributionManagement>
     <properties>
@@ -52,7 +52,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.github.fabiankevin</groupId>
-                <artifactId>microweb-spring-boot-starter</artifactId>
+                <artifactId>quickstart-spring-boot-starter</artifactId>
                 <version>0.0.31-SNAPSHOT</version>
             </dependency>
         </dependencies>

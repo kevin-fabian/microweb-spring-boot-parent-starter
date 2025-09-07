@@ -1,4 +1,4 @@
-package com.github.fabiankevin.microwebspringbootstarter.web.dto;
+package com.github.fabiankevin.quickstart.web.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
