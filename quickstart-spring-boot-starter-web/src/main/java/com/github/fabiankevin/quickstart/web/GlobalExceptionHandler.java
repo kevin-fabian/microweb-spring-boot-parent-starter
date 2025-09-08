@@ -7,6 +7,7 @@ import com.github.fabiankevin.quickstart.web.dto.ApiErrorResponse;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSourceResolvable;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
@@ -56,13 +57,7 @@ public class GlobalExceptionHandler {
         return new ApiErrorResponse("Invalid Request Parameters", errors);
     }
 
-    @ExceptionHandler(HttpMessageNotReadableException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiErrorResponse handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
-        log.debug("HttpMessageNotReadableException: {}", ex.getMessage(), ex);
-        return new ApiErrorResponse("Invalid Request Format", "The request body is not properly formatted or contains invalid JSON");
-    }
-
+    @Order(0)
     @ExceptionHandler({InvalidFormatException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiErrorResponse handleInvalidFormatException(InvalidFormatException ex) {
@@ -72,29 +67,20 @@ public class GlobalExceptionHandler {
                 .toList());
     }
 
+    @Order(1)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiErrorResponse handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
+        log.debug("HttpMessageNotReadableException: {}", ex.getMessage(), ex);
+        return new ApiErrorResponse("Invalid Request Format", "The request body is not properly formatted or contains invalid JSON");
+    }
+
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiErrorResponse handle(MethodArgumentTypeMismatchException ex) {
         log.debug("MethodArgumentTypeMismatchException: {}", ex.getMessage(), ex);
         String errorMessage = String.format("Parameter '%s' must be of type '%s'", ex.getName(), ex.getRequiredType().getSimpleName());
         return new ApiErrorResponse("Type Mismatch", errorMessage);
-    }
-
-    @ExceptionHandler(AccessDeniedException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    public ApiErrorResponse handleAccessDeniedException(AccessDeniedException ex) {
-        log.debug("AccessDeniedException: {}", ex.getMessage(), ex);
-        return new ApiErrorResponse("Access Denied",
-                "You don't have permission to access this resource");
-    }
-
-
-    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
-    public ApiErrorResponse handle(HttpRequestMethodNotSupportedException ex) {
-        log.debug("HttpRequestMethodNotSupportedException: {}", ex.getMessage(), ex);
-        return new ApiErrorResponse("Method Not Allowed",
-                String.format("The %s method is not allowed for this endpoint. Allowed methods are: %s", ex.getMethod(), ex.getSupportedHttpMethods()));
     }
 
     @ExceptionHandler(ServletRequestBindingException.class)
@@ -112,21 +98,6 @@ public class GlobalExceptionHandler {
                 ex.getValueResults().getFirst().getResolvableErrors().stream()
                         .map(MessageSourceResolvable::getDefaultMessage)
                         .toList());
-    }
-    
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ApiErrorResponse handleGenericException(Exception ex) {
-        log.debug("handleGenericException: {}", ex.getMessage(), ex);
-        return new ApiErrorResponse("Internal Server Error", "An unexpected error occurred. Please try again later or contact support if the problem persists.");
-    }
-
-    @ExceptionHandler(MaxUploadSizeExceededException.class)
-    @ResponseStatus(HttpStatus.PAYLOAD_TOO_LARGE)
-    public ApiErrorResponse handleMaxUploadSizeExceededException(MaxUploadSizeExceededException ex) {
-        log.debug("MaxUploadSizeExceededException: {}", ex.getMessage(), ex);
-        return new ApiErrorResponse("File Too Large",
-                "The uploaded file exceeds the maximum allowed size");
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
@@ -157,6 +128,23 @@ public class GlobalExceptionHandler {
                 String.format("The required header '%s' is missing", ex.getHeaderName()));
     }
 
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ApiErrorResponse handleAccessDeniedException(AccessDeniedException ex) {
+        log.debug("AccessDeniedException: {}", ex.getMessage(), ex);
+        return new ApiErrorResponse("Access Denied",
+                "You don't have permission to access this resource");
+    }
+
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    public ApiErrorResponse handle(HttpRequestMethodNotSupportedException ex) {
+        log.debug("HttpRequestMethodNotSupportedException: {}", ex.getMessage(), ex);
+        return new ApiErrorResponse("Method Not Allowed",
+                String.format("The %s method is not allowed for this endpoint. Allowed methods are: %s", ex.getMethod(), ex.getSupportedHttpMethods()));
+    }
+
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
     @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
     public ApiErrorResponse handleUnsupportedMediaType(HttpMediaTypeNotSupportedException ex) {
@@ -175,5 +163,20 @@ public class GlobalExceptionHandler {
         log.debug("AsyncRequestTimeoutException: {}", ex.getMessage(), ex);
         return new ApiErrorResponse("Request Timeout",
                 "The request took too long to process and timed out");
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ApiErrorResponse handleGenericException(Exception ex) {
+        log.debug("handleGenericException: {}", ex.getMessage(), ex);
+        return new ApiErrorResponse("Internal Server Error", "An unexpected error occurred. Please try again later or contact support if the problem persists.");
+    }
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    @ResponseStatus(HttpStatus.PAYLOAD_TOO_LARGE)
+    public ApiErrorResponse handleMaxUploadSizeExceededException(MaxUploadSizeExceededException ex) {
+        log.debug("MaxUploadSizeExceededException: {}", ex.getMessage(), ex);
+        return new ApiErrorResponse("File Too Large",
+                "The uploaded file exceeds the maximum allowed size");
     }
 }
