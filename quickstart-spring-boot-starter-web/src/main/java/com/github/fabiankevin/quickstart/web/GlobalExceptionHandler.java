@@ -7,7 +7,6 @@ import com.github.fabiankevin.quickstart.web.dto.ApiErrorResponse;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSourceResolvable;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
@@ -57,21 +56,17 @@ public class GlobalExceptionHandler {
         return new ApiErrorResponse("Invalid Request Parameters", errors);
     }
 
-    @Order(0)
-    @ExceptionHandler({InvalidFormatException.class})
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiErrorResponse handleInvalidFormatException(InvalidFormatException ex) {
-        log.debug("InvalidFormatException: {}", ex.getMessage(), ex);
-        return new ApiErrorResponse("Data Format Error", ex.getPath().stream()
-                .map(ref -> "The value provided for '%s' has an incorrect format" .formatted(ref.getFieldName()))
-                .toList());
-    }
-
-    @Order(1)
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiErrorResponse handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
         log.debug("HttpMessageNotReadableException: {}", ex.getMessage(), ex);
+
+        if(ex.getCause() instanceof InvalidFormatException invalidFormatException){
+            return new ApiErrorResponse("Data Format Error", invalidFormatException.getPath().stream()
+                    .map(ref -> "The value provided for '%s' has an incorrect format" .formatted(ref.getFieldName()))
+                    .toList());
+        } 
+        
         return new ApiErrorResponse("Invalid Request Format", "The request body is not properly formatted or contains invalid JSON");
     }
 
