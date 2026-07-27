@@ -20,7 +20,7 @@ jobs:
           java-version: '25'
           distribution: 'temurin'
           cache: maven
-          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          server-id: github # Value of the distributionManagement/repository/id field in the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       - name: Publish to GitHub Packages Apache Maven

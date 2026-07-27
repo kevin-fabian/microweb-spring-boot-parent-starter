@@ -24,6 +24,7 @@ import org.springframework.web.context.request.async.AsyncRequestTimeoutExceptio
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.List;
 import java.util.Objects;
@@ -191,6 +192,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ProblemDetail> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException ex) {
         log.debug("MaxUploadSizeExceededException: {}", ex.getMessage(), ex);
         return problemResponse(HttpStatus.CONTENT_TOO_LARGE, "Content too large", "The uploaded content exceeds the maximum allowed size");
+    }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ResponseEntity<ProblemDetail> handleNoResourceFoundException(NoResourceFoundException ex) {
+        log.debug("NoResourceFoundException: {}", ex.getMessage(), ex);
+        return problemResponse(HttpStatus.NOT_FOUND, "Resource not found", "The requested resource was not found");
     }
 
     private ResponseEntity<ProblemDetail> problemResponse(HttpStatusCode status, String title, String detail) {

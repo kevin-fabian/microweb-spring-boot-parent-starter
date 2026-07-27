@@ -12,8 +12,8 @@
     <description>spring-boot-starter-lemon-web</description>
 
     <properties>
-        <springdoc-openapi-starter-webmvc-ui.version>2.8.9</springdoc-openapi-starter-webmvc-ui.version>
-        <logbook-spring-boot-starter.version>4.0.2</logbook-spring-boot-starter.version>
+        <springdoc-openapi-starter-webmvc-ui.version>3.0.3</springdoc-openapi-starter-webmvc-ui.version>
+        <logbook-spring-boot-starter.version>4.0.4</logbook-spring-boot-starter.version>
     </properties>
     <dependencies>
         <dependency>
